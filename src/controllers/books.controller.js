@@ -40,6 +40,16 @@ const getBooks = async (req, res, next) => {
   }
 };
 
+const createBooks = async function (req, res) {
+  const book = new Book({
+    book_name: req.query.book_name,
+    book_description: req.query.book_description,
+  });
+  const result = await book.save();
+  res.status(201).send({ result });
+};
+
 module.exports = {
   getBooks,
+  createBooks,
 };
